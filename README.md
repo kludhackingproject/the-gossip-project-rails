@@ -1,4 +1,4 @@
-# The gossip project developped under Rails
+# The gossip project developed under Rails
 
 1. Clone the repo
 2. Run <code>bundle install</code>
