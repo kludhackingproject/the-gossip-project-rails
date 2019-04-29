@@ -1,24 +1,10 @@
-# README
+# The gossip project developped under Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Clone the repo
+2. Run <code>bundle install</code>
+3. Run <code>rails db:seed</code>
+4. Run <code>rails server</code>
+5. Connect to http://localhost:3000
+6. Enjoy :)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To check for the 2.4 exercice, type <code>welcomes/first_name</code> in the URL.
