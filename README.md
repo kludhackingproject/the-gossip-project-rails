@@ -2,6 +2,8 @@
 
 1. Clone the repo
 2. Run <code>bundle install</code>
+3. Run <code>rails db:create</code>
+4. Run <code>rails db:migrate</code>
 3. Run <code>rails db:seed</code>
 4. Run <code>rails server</code>
 5. Connect to http://localhost:3000
