@@ -6,6 +6,7 @@ ruby '2.5.1'
 # Gem perso
 gem 'table_print'
 gem 'faker'
+gem 'simple_form'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
