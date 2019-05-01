@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  root 'gossips#index'
+  resources :city
   resources :gossips
+  resources :user
   get 'welcomes/:name', to: 'welcomes#home', as: 'welcome'
   get 'contact/contact'
   get 'team/team'
-  get 'user/page/:user', to: 'user#page', as: 'user'
+
+  root 'gossips#index'
 end

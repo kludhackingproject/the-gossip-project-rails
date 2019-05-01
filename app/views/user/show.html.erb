@@ -8,6 +8,6 @@
     <li class="list-group-item">Prenom : <%= @user.first_name %></li>
     <li class="list-group-item">Email : <%= @user.email %></li>
     <li class="list-group-item">Age : <%= @user.age %></li>
-    <li class="list-group-item">Ville : <%= @user.city.name %></li>
+    <li class="list-group-item">Ville : <%= link_to @user.city.name, city_path(@user.city_id) %></li>
   </ul>
 </div>

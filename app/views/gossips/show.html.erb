@@ -5,7 +5,7 @@
   <div class="card-body">
     <blockquote class="blockquote mb-0">
       <p><%= @gossip.content %></p>
-      <footer class="blockquote-footer">Cet article a été écrit par "<%= @gossip.user.first_name %>" : <%= link_to "plus d'infos sur l'auteur", user_path(:user => @gossip.user.id) %></footer>
+      <footer class="blockquote-footer">Cet article a été écrit par <b><%= @gossip.user.first_name %></b> de la ville de <b><%= link_to @gossip.user.city.name, city_path(@gossip.user.city_id) %></b> : <%= link_to "plus d'infos sur l'auteur", user_path(@gossip.user.id) %></footer>
     </blockquote>
   </div>
 </div>

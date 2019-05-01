@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  def page
-    @user = User.find(params[:user])
+  def show
+    @user = User.find(params[:id])
   end
 end
