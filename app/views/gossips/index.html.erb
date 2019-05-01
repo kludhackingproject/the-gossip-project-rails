@@ -12,6 +12,8 @@
         <div class="card-body">
           <h5 class="card-title">A été écrit par <%= item.user.first_name %></h5>
           <%= link_to "En savoir plus...", gossip_path(item.id), class:"btn btn-primary" %>
+          <%= link_to "Editer", edit_gossip_path(item.id), class:"btn btn-default" %>
+          <%= link_to "Supprimer", gossip_path(item.id), class:"btn btn-danger", data: {:confirm => "Etes vous sûr de supprimer ?", :method => "DELETE"} %>
         </div>
       </div>
     </div>

@@ -12,6 +12,10 @@ class GossipsController < ApplicationController
     @gossip = Gossip.new
   end
 
+  def edit
+    @gossip = Gossip.find(params[:id])
+  end
+
   def create
     @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: 43) # avec xxx qui sont les données obtenues à partir du formulaire
 
@@ -24,5 +28,28 @@ class GossipsController < ApplicationController
       puts "ca ne fontionne pas"
       render new_gossip_path
     end
+  end
+
+  def update
+    @gossip = Gossip.find(params[:id])
+
+    if @gossip.update(gossip_params)
+      redirect_to gossip_path
+    else
+      render edit_gossip_path
+    end
+  end
+
+  def destroy
+    @gossip = Gossip.find(params[:id])
+    @gossip.destroy
+
+    redirect_to gossips_path
+  end
+
+  private
+
+  def gossip_params
+    params.require(:gossip).permit(:title, :content)
   end
 end
