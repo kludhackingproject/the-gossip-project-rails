@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  root 'home#home'
-  resources :gossipcreation
-  get 'gossips/page/:gossip', to:'gossips#page', as: 'gossip'
-  get 'home/home'
+  root 'gossips#index'
+  resources :gossips
   get 'welcomes/:name', to: 'welcomes#home', as: 'welcome'
   get 'contact/contact'
   get 'team/team'
