@@ -26,9 +26,13 @@
 
       <% end %>
     </blockquote>
-    <% @gossip.comments.each do |gossip| %>
-            <h5>A été écrit par <%= gossip.user.first_name %> :</h5>
-            <p><%= gossip.content %></p>
+    <% @gossip.comments.each do |comment| %>
+      <h5>A été écrit par <%= comment.user.first_name %> :</h5>
+      <p><%= comment.content %>
+        <% if current_user == comment.user %>
+          <%= link_to "Editer", edit_comment_path(comment.id) %>
+        <% end %>
+      </p>
     <% end %>
   </div>
 </div>
