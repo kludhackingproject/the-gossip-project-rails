@@ -9,3 +9,26 @@
     </blockquote>
   </div>
 </div>
+
+<div class="card create-potin">
+  <div class="card-header">
+    <h2>Commenter le gossip</h2>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <%= form_tag url_for(controller: :comment, action: :create, id: @gossip.id), method: "post" do %>
+
+        <%= label_tag 'Description de ton potin' %>
+        <%= text_area_tag 'content' %>
+        <br /> <br />
+
+        <%= submit_tag "Commenter" %>
+
+      <% end %>
+    </blockquote>
+    <% @gossip.comments.each do |gossip| %>
+            <h5>A été écrit par <%= gossip.user.first_name %> :</h5>
+            <p><%= gossip.content %></p>
+    <% end %>
+  </div>
+</div>

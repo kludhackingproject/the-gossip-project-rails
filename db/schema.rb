@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_25_133051) do
+ActiveRecord::Schema.define(version: 2019_05_01_150716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2019_04_25_133051) do
     t.string "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "gossip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gossip_id"], name: "index_comments_on_gossip_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "gossips", force: :cascade do |t|
@@ -46,6 +56,16 @@ ActiveRecord::Schema.define(version: 2019_04_25_133051) do
     t.datetime "updated_at", null: false
     t.index ["received_message_id"], name: "index_recipient_to_pm_links_on_received_message_id"
     t.index ["recipient_id"], name: "index_recipient_to_pm_links_on_recipient_id"
+  end
+
+  create_table "sub_comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "comment_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_sub_comments_on_comment_id"
+    t.index ["user_id"], name: "index_sub_comments_on_user_id"
   end
 
   create_table "tag_gossip_links", force: :cascade do |t|
