@@ -1,6 +1,8 @@
 class CommentController < ApplicationController
+  before_action :authenticate_user, only: [:create]
+
   def create
-    @comment = Comment.new(content: params[:content], user_id: 43, gossip_id: params[:id]) # avec xxx qui sont les données obtenues à partir du formulaire
+    @comment = Comment.new(content: params[:content], user_id: current_user.id, gossip_id: params[:id]) # avec xxx qui sont les données obtenues à partir du formulaire
 
     if @comment.save # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site

@@ -3,17 +3,19 @@
 <h3>Hello visiteur ! Voici tous les potins de THP :</h3>
 
 <div class="row">
-  <% @gossips.each do |item| %>
+  <% @gossips.each do |gossip| %>
     <div class="col-sm-6" style="padding: 30px">
       <div class="card">
         <div class="card-header">
-          <h4><%= item.title %></h4>
+          <h4><%= gossip.title %></h4>
         </div>
         <div class="card-body">
-          <h5 class="card-title">A été écrit par <%= item.user.first_name %></h5>
-          <%= link_to "En savoir plus...", gossip_path(item.id), class:"btn btn-primary" %>
-          <%= link_to "Editer", edit_gossip_path(item.id), class:"btn btn-default" %>
-          <%= link_to "Supprimer", gossip_path(item.id), class:"btn btn-danger", data: {:confirm => "Etes vous sûr de supprimer ?", :method => "DELETE"} %>
+          <h5 class="card-title">A été écrit par <%= gossip.user.first_name %></h5>
+          <%= link_to "En savoir plus...", gossip_path(gossip.id), class:"btn btn-primary" %>
+          <% if current_user == gossip.user %>
+            <%= link_to "Editer", edit_gossip_path(gossip.id), class:"btn btn-default" %>
+            <%= link_to "Supprimer", gossip_path(gossip.id), class:"btn btn-danger", data: {:confirm => "Etes vous sûr de supprimer ?", :method => "DELETE"} %>
+          <% end %>
         </div>
       </div>
     </div>

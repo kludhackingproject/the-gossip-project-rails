@@ -1,4 +1,6 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :show, :new]
+  before_action :authenticate_user_edit, only: [:edit, :update]
 
   def index
     @gossips = Gossip.all
@@ -17,7 +19,7 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: 43) # avec xxx qui sont les données obtenues à partir du formulaire
+    @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: current_user.id) # avec xxx qui sont les données obtenues à partir du formulaire
 
     if @gossip.save # essaie de sauvegarder en base @gossip
       # si ça marche, il redirige vers la page d'index du site
@@ -32,6 +34,7 @@ class GossipsController < ApplicationController
 
   def update
     @gossip = Gossip.find(params[:id])
+    gossip_user = @gossip.user
 
     if @gossip.update(gossip_params)
       redirect_to gossip_path
@@ -42,9 +45,14 @@ class GossipsController < ApplicationController
 
   def destroy
     @gossip = Gossip.find(params[:id])
-    @gossip.destroy
+    gossip_user = @gossip.user
 
-    redirect_to gossips_path
+    if current_user == gossip_user
+      @gossip.destroy
+      redirect_to gossips_path
+    else
+      puts "pas possible"
+    end
   end
 
   private
