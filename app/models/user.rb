@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :received_messages, foreign_key: 'received_message_id', class_name: "PrivateMessage", through: :recipient_to_pm_links
   has_many :sub_comments
   has_many :comments
+  has_many :likes
 
   has_secure_password
 end

@@ -6,6 +6,12 @@
     <blockquote class="blockquote mb-0">
       <p><%= @gossip.content %></p>
       <footer class="blockquote-footer">Cet article a été écrit par <b><%= @gossip.user.first_name %></b> de la ville de <b><%= link_to @gossip.user.city.name, city_path(@gossip.user.city_id) %></b> : <%= link_to "plus d'infos sur l'auteur", user_path(@gossip.user.id) %></footer>
+      <% if @gossip.likes.where(user_id: current_user).count > 0 %>
+        <%= link_to "Dislike", like_path(:id => @gossip.likes.sample), class:"btn btn-danger", data: { method: "DELETE" } %>
+      <% else %>
+        <%= link_to "liker", like_index_path(:id => @gossip.id), class:"btn btn-danger", data: { method: "post" } %>
+      <% end %>
+      <%= @gossip.likes.count %>
     </blockquote>
   </div>
 </div>
